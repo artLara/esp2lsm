@@ -7,26 +7,25 @@ import json
 import requests
 import sys
 
-from esp2lsm.service.src.PhraseCleaner import PhraseCleaner
+from message_postprocessing.service.src.Translate import Translate
 sys.path.append('../')
 sys.path.append('../../')
 
 
-
-message = {'index':1, 'phrase':'This is a test'}
-
+translate = Translate()
+message = {'index':0, 'phrase':''}
 class Post_APIView(APIView):
     
 
     def get(self, request, format=None, *args, **kwargs):
-        data = request.body
-        data = json.loads(data)
+        data = request.GET.get('message', '')
+        #data = json.loads(data)
 
-        # print('------>Data:', data)
+        #print('------>Data:', data)
         # print('------>Data:', type(data))
-        message['phrase'] = phraseCleaner.cleanSentence(data['json_payload'])
+        translate.createVideo(data)
         message['index'] += 1
-        print(message)
+        #print(message)
         response = {
            "message": "OK",
            "error": False,

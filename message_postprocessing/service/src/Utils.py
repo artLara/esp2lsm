@@ -5,7 +5,7 @@ class Utils():
 
     def createVocabulary():
         vocab = {}
-        files = os.listdir('../raw/')
+        files = os.listdir('message_postprocessing/service/raw/')
         for file in files:
             word = ''.join(file.replace('.mp4', '_').split('_')[1::])
             vocab[word] = file

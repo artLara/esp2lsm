@@ -7,7 +7,7 @@ class Translate():
         self.__vocab = Utils.createVocabulary()
         self.__path = '../raw/'
         self.__messageCount = 0
-        self.__pubicVideoPath = '/home/lara/Desktop/dactilologiaLSM_microservices/deafUI/videos_robot/'
+        self.__pubicVideoPath = '/home/lara/Desktop/LSM/microservices/deafUI_web/videos_robot/'
 
 
     def extractFrames(self, file_name):
@@ -51,7 +51,7 @@ class Translate():
         videoName = self.__pubicVideoPath + 'message{}.mp4'.format(self.__messageCount)
         tmp = self.__pubicVideoPath + 'message{}_tmp.mp4'.format(self.__messageCount)
         os.system("ffmpeg -i {} -vcodec libx264 -f mp4 {}".format(tmp, videoName))
-        os.remove(tmp)
+        # os.remove(tmp)
         return 'message{}.mp4'.format(self.__messageCount)
 
 
